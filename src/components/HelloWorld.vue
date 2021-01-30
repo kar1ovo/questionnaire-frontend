@@ -8,7 +8,14 @@
       <van-swipe-item>4</van-swipe-item>
     </van-swipe>
     <van-form @submit="onSubmit">
-      <van-field v-model="name" label="姓名" placeholder="请输入姓名" />
+      <van-field
+        v-model="name"
+        rows="1"
+        autosize
+        type="textarea"
+        label="姓名"
+        placeholder="请输入姓名"
+      />
       <van-field
         readonly
         clickable
@@ -25,8 +32,22 @@
           @cancel="showArea = false"
         />
       </van-popup>
-      <van-field v-model="school" label="学校" placeholder="请输入学校" />
-      <van-field v-model="cclass" label="班级" placeholder="请输入班级" />
+      <van-field
+        v-model="school"
+        rows="1"
+        autosize
+        type="textarea"
+        label="学校"
+        placeholder="请输入学校"
+      />
+      <van-field
+        v-model="cclass"
+        rows="1"
+        autosize
+        type="textarea"
+        label="班级"
+        placeholder="请输入班级"
+      />
       <van-field
         readonly
         clickable
@@ -48,8 +69,8 @@
         v-model="message"
         rows="1"
         autosize
-        label="留言"
         type="textarea"
+        label="留言"
         placeholder="请输入留言"
       />
       <van-notice-bar
@@ -103,7 +124,23 @@ export default {
       //发送post请求到指定api接口存入mongodb数据库
       //并且弹出成功/失败的提示消息
       // 成功通知
-      this.$notify({ type: "success", message: "✨ 提交成功\n🌐 收到表单" });
+      this.$http
+        .post("http://localhost:3001/questionnaires", {
+          name: this.name,
+          address: this.address,
+          school: this.school,
+          class: this.cclass,
+          desire: this.desire,
+          message: this.message,
+          time: new Date().toLocaleString(),
+        })
+        .then((res) => {
+          console.log(res.data);
+          this.$notify({
+            type: "success",
+            message: "✨ 提交成功\n🌐 收到表单",
+          });
+        });
     },
   },
 };
