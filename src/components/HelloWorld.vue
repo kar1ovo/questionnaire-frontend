@@ -125,7 +125,7 @@ export default {
       //并且弹出成功/失败的提示消息
       // 成功通知
       this.$http
-        .post("http://localhost:3001/questionnaires", {
+        .post("http://81.68.236.133:3001/questionnaires", {
           name: this.name,
           address: this.address,
           school: this.school,
