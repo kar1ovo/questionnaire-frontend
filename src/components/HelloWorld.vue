@@ -128,17 +128,18 @@ export default {
         .post(
           "https://bird.ioliu.cn/v1?url=http://81.68.236.133:3001/questionnaires",
           {
-            name: this.name,
-            address: this.address,
-            school: this.school,
-            class: this.cclass,
-            desire: this.desire,
-            message: this.message,
-            time: new Date().toLocaleString(),
+            data: {
+              name: this.name,
+              address: this.address,
+              school: this.school,
+              class: this.cclass,
+              desire: this.desire,
+              message: this.message,
+              time: new Date().toLocaleString(),
+            },
           }
         )
-        .then((res) => {
-          console.log(res.data);
+        .then(() => {
           this.$notify({
             type: "success",
             message: "✨ 提交成功\n🌐 收到表单",
