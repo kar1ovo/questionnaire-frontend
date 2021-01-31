@@ -125,20 +125,15 @@ export default {
       //并且弹出成功/失败的提示消息
       // 成功通知
       this.$http
-        .post(
-          "https://bird.ioliu.cn/v1?url=http://81.68.236.133:3001/questionnaires",
-          {
-            data: {
-              name: this.name,
-              address: this.address,
-              school: this.school,
-              class: this.cclass,
-              desire: this.desire,
-              message: this.message,
-              time: new Date().toLocaleString(),
-            },
-          }
-        )
+        .post("https://81.68.236.133:3001/questionnaires", {
+          name: this.name,
+          address: this.address,
+          school: this.school,
+          class: this.cclass,
+          desire: this.desire,
+          message: this.message,
+          time: new Date().toLocaleString(),
+        })
         .then(() => {
           this.$notify({
             type: "success",
